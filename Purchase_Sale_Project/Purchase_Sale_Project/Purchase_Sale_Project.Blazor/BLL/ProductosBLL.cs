@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Models;
 using Purchase_Sale_Project.Blazor.Data;
 using System;
@@ -10,21 +9,21 @@ using System.Threading.Tasks;
 
 namespace Purchase_Sale_Project.Blazor.BLL
 {
-    public class ClientesBLL
+    public class ProductosBLL
     {
         private ApplicationDbContext context;
 
-        public ClientesBLL(ApplicationDbContext _context)
+        public ProductosBLL(ApplicationDbContext _context)
         {
             context = _context;
         }
 
-        public async Task<bool> Guardar(Clientes clientes)
+        public async Task<bool> Guardar(Productos producto)
         {
-            if (!Existe(clientes.ClienteId))
-                return await Insertar(clientes);
+            if (!Existe(producto.ProductoId))
+                return await Insertar(producto);
             else
-                return await Modificar(clientes);
+                return await Modificar(producto);
         }
 
         private bool Existe(int id)
@@ -33,7 +32,7 @@ namespace Purchase_Sale_Project.Blazor.BLL
 
             try
             {
-                existe = context.Clientes.Any(c => c.ClienteId == id);
+                existe = context.Productos.Any(c => c.ProductoId == id);
             }
             catch (Exception)
             {
@@ -42,13 +41,13 @@ namespace Purchase_Sale_Project.Blazor.BLL
             return existe;
         }
 
-        private async Task<bool> Insertar(Clientes clientes)
+        private async Task<bool> Insertar(Productos producto)
         {
             bool Insertado = false;
 
             try
             {
-                context.Clientes.Add(clientes);
+                context.Productos.Add(producto);
                 Insertado = await context.SaveChangesAsync() > 0;
             }
             catch (Exception)
@@ -58,13 +57,13 @@ namespace Purchase_Sale_Project.Blazor.BLL
             return Insertado;
         }
 
-        private async Task<bool> Modificar(Clientes clientes)
+        private async Task<bool> Modificar(Productos producto)
         {
             bool Insertado = false;
 
             try
             {
-                context.Clientes.Update(clientes);
+                context.Productos.Update(producto);
                 Insertado = await context.SaveChangesAsync() > 0;
             }
             catch (Exception)
@@ -74,19 +73,19 @@ namespace Purchase_Sale_Project.Blazor.BLL
             return Insertado;
         }
 
-        public async Task<Clientes> Buscar(int id)
+        public async Task<Productos> Buscar(int id)
         {
-            Clientes cliente = new Clientes();
+            Productos producto = new Productos();
 
             try
             {
-                cliente = await context.Clientes.FindAsync(id);
+                producto = await context.Productos.FindAsync(id);
             }
             catch (Exception)
             {
                 throw;
             }
-            return cliente;
+            return producto;
         }
 
         public async Task<bool> Eliminar(int id)
@@ -95,11 +94,11 @@ namespace Purchase_Sale_Project.Blazor.BLL
 
             try
             {
-                var cliente = await context.Clientes.FindAsync(id);
+                var producto = await context.Productos.FindAsync(id);
 
-                if (cliente != null)
+                if (producto != null)
                 {
-                    context.Clientes.Remove(cliente);
+                    context.Productos.Remove(producto);
                     Eliminado = (await context.SaveChangesAsync() > 0);
                 }
             }
@@ -110,12 +109,12 @@ namespace Purchase_Sale_Project.Blazor.BLL
             return Eliminado;
         }
 
-        public async Task<List<Clientes>> GetList(Expression<Func<Clientes, bool>> cliente)
+        public async Task<List<Productos>> GetList(Expression<Func<Productos, bool>> producto)
         {
-            List<Clientes> Lista = new List<Clientes>();
+            List<Productos> Lista = new List<Productos>();
             try
             {
-                Lista = await context.Clientes.Where(cliente).ToListAsync();
+                Lista = await context.Productos.Where(producto).ToListAsync();
             }
             catch (Exception)
             {

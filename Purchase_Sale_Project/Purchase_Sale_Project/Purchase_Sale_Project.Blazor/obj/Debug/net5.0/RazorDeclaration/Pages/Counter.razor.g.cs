@@ -98,7 +98,7 @@ using Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 9 "C:\Users\AnthonyB\source\End_Project\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\Pages\Counter.razor"
+#line 8 "C:\Users\AnthonyB\source\End_Project\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\Pages\Counter.razor"
        
     private int currentCount = 0;
 

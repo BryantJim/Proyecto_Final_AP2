@@ -19,6 +19,6 @@ namespace Models
         public int UsuarioId { get; set; }
 
         [ForeignKey("UsuarioId")]
-        public virtual Usuarios Usuario { get; set; }
+        public virtual Usuarios usuarios { get; set; }
     }
 }

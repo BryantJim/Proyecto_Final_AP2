@@ -10,8 +10,8 @@ using Purchase_Sale_Project.Blazor.Data;
 namespace Purchase_Sale_Project.Blazor.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201125235654_Agregando_Tabla_Clientes")]
-    partial class Agregando_Tabla_Clientes
+    [Migration("20201129215157_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -155,12 +155,28 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Models.Categorias", b =>
+                {
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CategoriaId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Categorias");
+                });
+
             modelBuilder.Entity("Models.Clientes", b =>
                 {
                     b.Property<int>("ClienteId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
 
                     b.Property<string>("Apellidos")
                         .HasColumnType("nvarchar(max)");
@@ -191,6 +207,130 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("Clientes");
+                });
+
+            modelBuilder.Entity("Models.Compras", b =>
+                {
+                    b.Property<int>("CompraId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("SuplidorId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("Total")
+                        .HasColumnType("real");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CompraId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Compras");
+                });
+
+            modelBuilder.Entity("Models.ComprasDetalle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<float>("Cantidad")
+                        .HasColumnType("real");
+
+                    b.Property<int>("CompraId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("Costo_Unidad")
+                        .HasColumnType("real");
+
+                    b.Property<float>("ITBIS")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Monto")
+                        .HasColumnType("real");
+
+                    b.Property<int>("ProductoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductoId");
+
+                    b.ToTable("ComprasDetalle");
+                });
+
+            modelBuilder.Entity("Models.Productos", b =>
+                {
+                    b.Property<int>("ProductoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<float>("Cantidad")
+                        .HasColumnType("real");
+
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("Costo_Unidad")
+                        .HasColumnType("real");
+
+                    b.Property<float>("ITBIS")
+                        .HasColumnType("real");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Precio")
+                        .HasColumnType("real");
+
+                    b.Property<int>("SuplidorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductoId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Productos");
+                });
+
+            modelBuilder.Entity("Models.Suplidores", b =>
+                {
+                    b.Property<int>("SuplidorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Celular")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Correo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Direccion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombres")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefono")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SuplidorId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Suplidores");
                 });
 
             modelBuilder.Entity("Models.Usuarios", b =>
@@ -260,6 +400,62 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Models.Ventas", b =>
+                {
+                    b.Property<int>("VentaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<float>("Total")
+                        .HasColumnType("real");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("VentaId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Ventas");
+                });
+
+            modelBuilder.Entity("Models.VentasDetalle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<float>("Cantidad")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Descuento")
+                        .HasColumnType("real");
+
+                    b.Property<float>("ITBIS")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Monto")
+                        .HasColumnType("real");
+
+                    b.Property<int>("ProductoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VentaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductoId");
+
+                    b.ToTable("VentasDetalle");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
@@ -311,15 +507,155 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Models.Clientes", b =>
+            modelBuilder.Entity("Models.Categorias", b =>
                 {
-                    b.HasOne("Models.Usuarios", "Usuario")
+                    b.HasOne("Models.Productos", null)
+                        .WithMany("Categoria")
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.Usuarios", "usuario")
                         .WithMany()
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Usuario");
+                    b.Navigation("usuario");
+                });
+
+            modelBuilder.Entity("Models.Clientes", b =>
+                {
+                    b.HasOne("Models.Ventas", null)
+                        .WithMany("Cliente")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.Usuarios", "usuarios")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("usuarios");
+                });
+
+            modelBuilder.Entity("Models.Compras", b =>
+                {
+                    b.HasOne("Models.ComprasDetalle", null)
+                        .WithMany("Compra")
+                        .HasForeignKey("CompraId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.Usuarios", "usuarios")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("usuarios");
+                });
+
+            modelBuilder.Entity("Models.ComprasDetalle", b =>
+                {
+                    b.HasOne("Models.Productos", "Producto")
+                        .WithMany()
+                        .HasForeignKey("ProductoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Producto");
+                });
+
+            modelBuilder.Entity("Models.Productos", b =>
+                {
+                    b.HasOne("Models.Usuarios", "usuarios")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("usuarios");
+                });
+
+            modelBuilder.Entity("Models.Suplidores", b =>
+                {
+                    b.HasOne("Models.Compras", null)
+                        .WithMany("Suplidor")
+                        .HasForeignKey("SuplidorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.Productos", null)
+                        .WithMany("Suplidor")
+                        .HasForeignKey("SuplidorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.Usuarios", "usuarios")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("usuarios");
+                });
+
+            modelBuilder.Entity("Models.Ventas", b =>
+                {
+                    b.HasOne("Models.Usuarios", "usuarios")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.VentasDetalle", null)
+                        .WithMany("Venta")
+                        .HasForeignKey("VentaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("usuarios");
+                });
+
+            modelBuilder.Entity("Models.VentasDetalle", b =>
+                {
+                    b.HasOne("Models.Productos", "Producto")
+                        .WithMany()
+                        .HasForeignKey("ProductoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Producto");
+                });
+
+            modelBuilder.Entity("Models.Compras", b =>
+                {
+                    b.Navigation("Suplidor");
+                });
+
+            modelBuilder.Entity("Models.ComprasDetalle", b =>
+                {
+                    b.Navigation("Compra");
+                });
+
+            modelBuilder.Entity("Models.Productos", b =>
+                {
+                    b.Navigation("Categoria");
+
+                    b.Navigation("Suplidor");
+                });
+
+            modelBuilder.Entity("Models.Ventas", b =>
+                {
+                    b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("Models.VentasDetalle", b =>
+                {
+                    b.Navigation("Venta");
                 });
 #pragma warning restore 612, 618
         }

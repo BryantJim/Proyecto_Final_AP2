@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Models;
 using Purchase_Sale_Project.Blazor.Areas.Identity;
+using Purchase_Sale_Project.Blazor.BLL;
 using Purchase_Sale_Project.Blazor.Data;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ namespace Purchase_Sale_Project.Blazor
 
             services.AddDefaultIdentity<Usuarios>(options => 
             { 
-                options.SignIn.RequireConfirmedAccount = false;
+                options.SignIn.RequireConfirmedAccount = false;  //Si es true pues manda a confirmar el e-mail automaticamente
                 options.Password.RequireDigit = false;
                 options.Password.RequiredLength = 4;
                 options.Password.RequireLowercase = false;
@@ -46,6 +47,8 @@ namespace Purchase_Sale_Project.Blazor
                 options.Password.RequireUppercase = false;
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddTransient<UsuariosBLL>();
 
             services.AddRazorPages();
             services.AddServerSideBlazor();

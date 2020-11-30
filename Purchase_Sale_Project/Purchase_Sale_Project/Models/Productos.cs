@@ -11,6 +11,7 @@ namespace Models
         [Key]
         public int ProductoId { get; set; }
         public string Nombre { get; set; }
+        public int CategoriaId { get; set; }
         public float Cantidad { get; set; }
         public float Costo_Unidad { get; set; }
         public float Precio { get; set; }
@@ -21,7 +22,10 @@ namespace Models
         [ForeignKey("SuplidorId")]
         public virtual List<Suplidores> Suplidor { get; set; }
 
+        [ForeignKey("CategoriaId")]
+        public virtual List<Categorias> Categoria { get; set; }
+
         [ForeignKey("UsuarioId")]
-        public virtual Usuarios Usuario { get; set; }
+        public virtual Usuarios usuarios { get; set; }
     }
 }

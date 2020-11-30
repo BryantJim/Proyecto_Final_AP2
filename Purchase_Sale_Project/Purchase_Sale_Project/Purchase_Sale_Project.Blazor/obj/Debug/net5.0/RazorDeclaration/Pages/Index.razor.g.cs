@@ -89,6 +89,13 @@ using Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\AnthonyB\source\End_Project\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\Pages\Index.razor"
+using BLL;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/")]
     public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -97,6 +104,27 @@ using Models;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 43 "C:\Users\AnthonyB\source\End_Project\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\Pages\Index.razor"
+ 
+    [Inject]
+    public UsuariosBLL usuarios { get; set; }
+
+    List<Usuarios> Lista = new List<Usuarios>();
+
+    protected override void OnInitialized()
+    {
+        Lista = new List<Usuarios>();
+    }
+
+    public async Task Consultar()
+    {
+        Lista = await usuarios.GetList(c => true);
+    }
+
+#line default
+#line hidden
+#nullable disable
     }
 }
 #pragma warning restore 1591
