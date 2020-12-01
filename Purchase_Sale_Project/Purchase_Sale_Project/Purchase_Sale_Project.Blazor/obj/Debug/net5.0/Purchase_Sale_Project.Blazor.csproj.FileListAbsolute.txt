@@ -183,3 +183,11 @@ C:\Users\AnthonyB\source\End_Project\Purchase_Sale_Project\Purchase_Sale_Project
 C:\Users\AnthonyB\source\End_Project\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\AnthonyB\source\End_Project\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\RazorDeclaration\Pages\Registros\R_Clientes.razor.g.cs
 C:\Users\AnthonyB\source\End_Project\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\Razor\Pages\Registros\R_Clientes.razor.g.cs
+C:\Users\AnthonyB\source\End_Project\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\RazorDeclaration\Pages\Registros\R_Categorias.razor.g.cs
+C:\Users\AnthonyB\source\End_Project\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\RazorDeclaration\Pages\Registros\R_Productos.razor.g.cs
+C:\Users\AnthonyB\source\End_Project\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\RazorDeclaration\Pages\Registros\R_Suplidores.razor.g.cs
+C:\Users\AnthonyB\source\End_Project\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\Razor\Pages\Registros\R_Categorias.razor.g.cs
+C:\Users\AnthonyB\source\End_Project\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\Razor\Pages\Registros\R_Productos.razor.g.cs
+C:\Users\AnthonyB\source\End_Project\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\Razor\Pages\Registros\R_Suplidores.razor.g.cs
+C:\Users\AnthonyB\source\End_Project\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\RazorDeclaration\Pages\Registros\R_Compras.razor.g.cs
+C:\Users\AnthonyB\source\End_Project\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\Razor\Pages\Registros\R_Compras.razor.g.cs
