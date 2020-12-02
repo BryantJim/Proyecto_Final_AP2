@@ -9,3 +9,6 @@ Purchase_Sale_Project/Purchase_Sale_Project/Models/obj/*.*
 
 Purchase_Sale_Project/Purchase_Sale_Project/Models/bin/Debug/*.*
 Purchase_Sale_Project/Purchase_Sale_Project/Models/bin/*.*
+
+Purchase_Sale_Project/Purchase_Sale_Project/Purchase_Sale_Project.Blazor/obj/Debug/net5.0/*.*
+Purchase_Sale_Project/Purchase_Sale_Project/Purchase_Sale_Project.Blazor/bin/Debug/net5.0/*.*
