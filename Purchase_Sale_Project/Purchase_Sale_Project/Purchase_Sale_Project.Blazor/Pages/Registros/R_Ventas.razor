@@ -1,15 +1,15 @@
-﻿@page "/compras"
+﻿@page "/ventas"
 
 @inject AuthenticationStateProvider Authentication
 
-<EditForm Model="compra" OnValidSubmit="Guardar">
+<EditForm Model="venta" OnValidSubmit="Guardar">
     <div class="container">
         <div class="card">
             <div class="card-header">
                 <h3>
-                    Registro compras
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bag-check-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M5.5 3.5a2.5 2.5 0 0 1 5 0V4h-5v-.5zm6 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                    Registro ventas
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bag-dash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M5.5 3.5a2.5 2.5 0 0 1 5 0V4h-5v-.5zm6 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM6 9.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1H6z" />
                     </svg>
                 </h3>
             </div>
@@ -18,9 +18,9 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-8">
-                        <label>Compra ID</label>
+                        <label>Venta ID</label>
                         <div class="input-group">
-                            <input type="number" @bind="compra.CompraId" class="form-control col-3" />
+                            <input type="number" @bind="venta.VentaId" class="form-control col-3" />
                             <div class="input-group-append">
                                 <button @onclick="Buscar" class="btn btn-outline-primary input-group-text">
                                     Buscar
@@ -34,22 +34,22 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label>Fecha</label>
-                        <input type="date" @bind="compra.Fecha" class="form-control col-6" />
+                        <input type="date" @bind="venta.Fecha" class="form-control col-6" />
                     </div>
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label>Suplidor</label>
-                        <select @bind="compra.SuplidorId" class="form-control">
-                            <option value="0" disabled selected>Seleccione un suplidor</option>
-                            @foreach (var item in SuplidorList)
+                    <div class="form-group col-md-3">
+                        <label>Cliente</label>
+                        <select @bind="venta.ClienteId" class="form-control">
+                            <option value="0" disabled selected>Seleccione un cliente</option>
+                            @foreach (var item in ClienteList)
                             {
-                                <option value="@item.SuplidorId">@item.Nombres</option>
+                                <option value="@item.ClienteId">@item.Nombres @item.Apellidos</option>
                             }
                         </select>
                     </div>
-                    <div class="form-group col-md-5">
+                    <div class="form-group col-md-4">
                         <label>Producto</label>
                         <select @bind="ProductoId" class="form-control">
                             <option value="0" disabled selected>Seleccione un producto</option>
@@ -58,6 +58,16 @@
                                 <option value="@item.ProductoId">@item.Nombre</option>
                             }
                         </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Descuento</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control"/>
+                            <div class="input-group-append">
+                                <span class="input-group-text">%</span>
+                            </div>
+
+                        </div>
                     </div>
                     <div class="form-group col-md-3">
                         <label>Cantidad</label>
@@ -75,18 +85,20 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>ID</th>
-                                <th>Suplidor ID</th>
+                                <th>Cliente ID</th>
                                 <th>Producto ID</th>
                                 <th>Cantidad</th>
                                 <th>Costo/Unidad</th>
+                                <th>Descuento</th>
                                 <th>Monto</th>
                                 <th>ITBIS</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @for(int x = 0; x <= 5; x++)
+                            @for (int x = 0; x <= 5; x++)
                             {
                             <tr>
+                                <td style="background-color:@(x % 2 == 1 ? @"#E8F8F5" : @"#F9E79F")"></td>
                                 <td style="background-color:@(x % 2 == 1 ? @"#E8F8F5" : @"#F9E79F")"></td>
                                 <td style="background-color:@(x % 2 == 1 ? @"#E8F8F5" : @"#F9E79F")"></td>
                                 <td style="background-color:@(x % 2 == 1 ? @"#E8F8F5" : @"#F9E79F")"></td>
@@ -107,18 +119,18 @@
 
                 <div class="form-inline justify-content-end">
                     <label class="col-1">ITBIS</label>
-                    <input type="number"  @bind="TITBIS" class="form-control col-2 text-right" readonly />
+                    <input type="number" @bind="TITBIS" class="form-control col-2 text-right" readonly />
                 </div>
 
                 <div class="form-inline justify-content-end">
                     <label class="col-1">Total</label>
-                    <input type="number"  @bind="Total" class="form-control col-2 text-right" readonly />
+                    <input type="number" @bind="venta.Total" class="form-control col-2 text-right" readonly />
                 </div>
 
             </div>
             <div class="card-footer">
                 <div class="form-group text-center">
-                    <button type="button" @onclick="Nuevo" class="btn btn-outline-primary ">
+                    <button type="button" @onclick="Nuevo" class="btn btn-outline-primary">
                         Nuevo
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
@@ -149,11 +161,12 @@
 </EditForm>
 
 @code {
+    Ventas venta = new Ventas();
     Compras compra = new Compras();
     int ProductoId;
-    float Cantidad,subTotal,TITBIS,Total;
+    float Cantidad, subTotal, TITBIS, Total;
     List<Productos> ProductoList = new List<Productos>();
-    List<Suplidores> SuplidorList = new List<Suplidores>();
+    List<Clientes> ClienteList = new List<Clientes>();
 
     protected override void OnInitialized()
     {
@@ -162,8 +175,8 @@
 
     public void Nuevo()
     {
-        compra = new Compras();
-        compra.Fecha = DateTime.Now;
+        venta = new Ventas();
+        venta.Fecha = DateTime.Now;
     }
 
     public async Task Guardar() { }

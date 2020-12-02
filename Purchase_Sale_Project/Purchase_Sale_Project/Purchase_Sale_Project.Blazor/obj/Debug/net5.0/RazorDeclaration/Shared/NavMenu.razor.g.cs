@@ -97,7 +97,7 @@ using Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 52 "C:\Users\AnthonyB\source\End_Project\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\Shared\NavMenu.razor"
+#line 57 "C:\Users\AnthonyB\source\End_Project\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 
