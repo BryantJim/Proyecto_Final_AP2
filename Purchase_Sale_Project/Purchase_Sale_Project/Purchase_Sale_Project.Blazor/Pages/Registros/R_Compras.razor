@@ -1,5 +1,174 @@
-﻿<h3>R_Compras</h3>
+﻿@page "/compras"
+
+@inject AuthenticationStateProvider Authentication
+
+<EditForm Model="compra" OnValidSubmit="Guardar">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h3>
+                    Registro compras
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-tag-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M2 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 6.586 1H2zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                    </svg>
+                </h3>
+            </div>
+
+            <div class="card-body">
+
+                <div class="form-row">
+                    <div class="form-group col-md-8">
+                        <label>Compra ID</label>
+                        <div class="input-group">
+                            <input type="number" @bind="compra.CompraId" class="form-control col-3" />
+                            <div class="input-group-append">
+                                <button @onclick="Buscar" class="btn btn-outline-primary input-group-text">
+                                    Buscar
+                                    <svg width="2em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"></path>
+                                        <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Fecha</label>
+                        <input type="date" @bind="compra.Fecha" class="form-control col-6" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label>Suplidor</label>
+                        <select @bind="compra.SuplidorId" class="form-control">
+                            <option value="0" disabled selected>Seleccione un suplidor</option>
+                            @foreach (var item in SuplidorList)
+                            {
+                                <option value="@item.SuplidorId">@item.Nombres</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label>Producto</label>
+                        <select @bind="ProductoId" class="form-control">
+                            <option value="0" disabled selected>Seleccione un producto</option>
+                            @foreach (var item in ProductoList)
+                            {
+                                <option value="@item.ProductoId">@item.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Cantidad</label>
+                        <div class="input-group">
+                            <input type="number" @bind="Cantidad" class="form-control" />
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary input-group-text">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive table-bordered text-wrap">
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Suplidor ID</th>
+                                <th>Producto ID</th>
+                                <th>Cantidad</th>
+                                <th>Costo/Unidad</th>
+                                <th>Monto</th>
+                                <th>ITBIS</th>
+                            </tr>
+                        </thead>
+                        <tbody style="background-color:#BFC9CA">
+                            @for(int x = 0; x <= 5; x++)
+                            {
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="form-inline justify-content-end">
+                    <label class="col-1">SubTotal</label>
+                    <input type="number" @bind="subTotal" class="form-control col-2 text-right" readonly />
+                </div>
+
+                <div class="form-inline justify-content-end">
+                    <label class="col-1">ITBIS</label>
+                    <input type="number"  @bind="TITBIS" class="form-control col-2 text-right" readonly />
+                </div>
+
+                <div class="form-inline justify-content-end">
+                    <label class="col-1">Total</label>
+                    <input type="number"  @bind="Total" class="form-control col-2 text-right" readonly />
+                </div>
+
+            </div>
+            <div class="card-footer">
+                <div class="form-group text-center">
+                    <button type="button" @onclick="Nuevo" class="btn btn-outline-primary btn-lg">
+                        Nuevo
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                            <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                            <path fill-rule="evenodd" d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
+                        </svg>
+                    </button>
+                    <button type="submit" class="btn btn-outline-success btn-lg">
+                        Guardar
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                            <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                            <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                        </svg>
+                    </button>
+                    <button type="button" @onclick="Eliminar" class="btn btn-outline-danger btn-lg">
+                        Eliminar
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                            <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                            <path fill-rule="evenodd" d="M6.146 7.146a.5.5 0 0 1 .708 0L8 8.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 9l1.147 1.146a.5.5 0 0 1-.708.708L8 9.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 9 6.146 7.854a.5.5 0 0 1 0-.708z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</EditForm>
 
 @code {
+    Compras compra = new Compras();
+    int ProductoId;
+    float Cantidad,subTotal,TITBIS,Total;
+    List<Productos> ProductoList = new List<Productos>();
+    List<Suplidores> SuplidorList = new List<Suplidores>();
 
+    protected override void OnInitialized()
+    {
+        Nuevo();
+    }
+
+    public void Nuevo()
+    {
+        compra = new Compras();
+        compra.Fecha = DateTime.Now;
+    }
+
+    public async Task Guardar() { }
+
+    public async Task Buscar() { }
+
+    public async Task Eliminar() { }
 }
