@@ -15,9 +15,8 @@ namespace Models
         public string Correo { get; set; }
         public string Telefono { get; set; }
         public string Celular { get; set; }
+   
         public int UsuarioId { get; set; }
-
-        [ForeignKey("UsuarioId")]
         public virtual Usuarios usuarios { get; set; }
     }
 }

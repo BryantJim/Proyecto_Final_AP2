@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jvJil26pKW+NYAgEi/VNm+RSTZTe8iNb2Y9fLLMASjtcrwfxR33m0pJSZunORCrkW0S6k22RzmUGpZAt3R85+w==",
+  "dgSpecHash": "nTEfsJRz78Cdvkm7S/AV8s92fItoDdX/J5TaTtYPVuDMnB0fmTc2sAJ6YA0PFzWxepB8nf6u/Be9Zx6WMGkfHg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\AnthonyB\\source\\End_Project\\Purchase_Sale_Project\\Purchase_Sale_Project\\Models\\Models.csproj",
+  "projectFilePath": "C:\\Users\\AnthonyB\\source\\Project\\Proyecto_Final_AP2\\Purchase_Sale_Project\\Purchase_Sale_Project\\Models\\Models.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\AnthonyB\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.8\\microsoft.aspnetcore.cryptography.internal.3.1.8.nupkg.sha512",
     "C:\\Users\\AnthonyB\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.8\\microsoft.aspnetcore.cryptography.keyderivation.3.1.8.nupkg.sha512",

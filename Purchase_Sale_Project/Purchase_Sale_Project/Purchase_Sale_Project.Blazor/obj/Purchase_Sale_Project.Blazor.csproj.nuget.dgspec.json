@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\AnthonyB\\source\\End_Project\\Purchase_Sale_Project\\Purchase_Sale_Project\\Purchase_Sale_Project.Blazor\\Purchase_Sale_Project.Blazor.csproj": {}
+    "C:\\Users\\AnthonyB\\source\\Project\\Proyecto_Final_AP2\\Purchase_Sale_Project\\Purchase_Sale_Project\\Purchase_Sale_Project.Blazor\\Purchase_Sale_Project.Blazor.csproj": {}
   },
   "projects": {
-    "C:\\Users\\AnthonyB\\source\\End_Project\\Purchase_Sale_Project\\Purchase_Sale_Project\\Models\\Models.csproj": {
+    "C:\\Users\\AnthonyB\\source\\Project\\Proyecto_Final_AP2\\Purchase_Sale_Project\\Purchase_Sale_Project\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\AnthonyB\\source\\End_Project\\Purchase_Sale_Project\\Purchase_Sale_Project\\Models\\Models.csproj",
+        "projectUniqueName": "C:\\Users\\AnthonyB\\source\\Project\\Proyecto_Final_AP2\\Purchase_Sale_Project\\Purchase_Sale_Project\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "C:\\Users\\AnthonyB\\source\\End_Project\\Purchase_Sale_Project\\Purchase_Sale_Project\\Models\\Models.csproj",
+        "projectPath": "C:\\Users\\AnthonyB\\source\\Project\\Proyecto_Final_AP2\\Purchase_Sale_Project\\Purchase_Sale_Project\\Models\\Models.csproj",
         "packagesPath": "C:\\Users\\AnthonyB\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\AnthonyB\\source\\End_Project\\Purchase_Sale_Project\\Purchase_Sale_Project\\Models\\obj\\",
+        "outputPath": "C:\\Users\\AnthonyB\\source\\Project\\Proyecto_Final_AP2\\Purchase_Sale_Project\\Purchase_Sale_Project\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\AnthonyB\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -65,14 +65,14 @@
         }
       }
     },
-    "C:\\Users\\AnthonyB\\source\\End_Project\\Purchase_Sale_Project\\Purchase_Sale_Project\\Purchase_Sale_Project.Blazor\\Purchase_Sale_Project.Blazor.csproj": {
+    "C:\\Users\\AnthonyB\\source\\Project\\Proyecto_Final_AP2\\Purchase_Sale_Project\\Purchase_Sale_Project\\Purchase_Sale_Project.Blazor\\Purchase_Sale_Project.Blazor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\AnthonyB\\source\\End_Project\\Purchase_Sale_Project\\Purchase_Sale_Project\\Purchase_Sale_Project.Blazor\\Purchase_Sale_Project.Blazor.csproj",
+        "projectUniqueName": "C:\\Users\\AnthonyB\\source\\Project\\Proyecto_Final_AP2\\Purchase_Sale_Project\\Purchase_Sale_Project\\Purchase_Sale_Project.Blazor\\Purchase_Sale_Project.Blazor.csproj",
         "projectName": "Purchase_Sale_Project.Blazor",
-        "projectPath": "C:\\Users\\AnthonyB\\source\\End_Project\\Purchase_Sale_Project\\Purchase_Sale_Project\\Purchase_Sale_Project.Blazor\\Purchase_Sale_Project.Blazor.csproj",
+        "projectPath": "C:\\Users\\AnthonyB\\source\\Project\\Proyecto_Final_AP2\\Purchase_Sale_Project\\Purchase_Sale_Project\\Purchase_Sale_Project.Blazor\\Purchase_Sale_Project.Blazor.csproj",
         "packagesPath": "C:\\Users\\AnthonyB\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\AnthonyB\\source\\End_Project\\Purchase_Sale_Project\\Purchase_Sale_Project\\Purchase_Sale_Project.Blazor\\obj\\",
+        "outputPath": "C:\\Users\\AnthonyB\\source\\Project\\Proyecto_Final_AP2\\Purchase_Sale_Project\\Purchase_Sale_Project\\Purchase_Sale_Project.Blazor\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\AnthonyB\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -89,8 +89,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\AnthonyB\\source\\End_Project\\Purchase_Sale_Project\\Purchase_Sale_Project\\Models\\Models.csproj": {
-                "projectPath": "C:\\Users\\AnthonyB\\source\\End_Project\\Purchase_Sale_Project\\Purchase_Sale_Project\\Models\\Models.csproj"
+              "C:\\Users\\AnthonyB\\source\\Project\\Proyecto_Final_AP2\\Purchase_Sale_Project\\Purchase_Sale_Project\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\AnthonyB\\source\\Project\\Proyecto_Final_AP2\\Purchase_Sale_Project\\Purchase_Sale_Project\\Models\\Models.csproj"
               }
             }
           }
@@ -105,6 +105,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Blazored.Toast": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.0, )"

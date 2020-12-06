@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using Purchase_Sale_Project.Blazor.Data;
@@ -11,22 +10,21 @@ using System.Threading.Tasks;
 
 namespace Purchase_Sale_Project.Blazor.BLL
 {
-    
-    public class ClientesBLL : ControllerBase
+    public class CategoriasBLL : ControllerBase
     {
         private ApplicationDbContext context;
 
-        public ClientesBLL(ApplicationDbContext _context)
+        public CategoriasBLL(ApplicationDbContext _context)
         {
             context = _context;
         }
 
-        public async Task<bool> Guardar(Clientes clientes)
+        public async Task<bool> Guardar(Categorias categoria)
         {
-            if (!Existe(clientes.ClienteId))
-                return await Insertar(clientes);
+            if (!Existe(categoria.CategoriaId))
+                return await Insertar(categoria);
             else
-                return await Modificar(clientes);
+                return await Modificar(categoria);
         }
 
         private bool Existe(int id)
@@ -35,7 +33,7 @@ namespace Purchase_Sale_Project.Blazor.BLL
 
             try
             {
-                existe = context.Clientes.Any(c => c.ClienteId == id);
+                existe = context.Categorias.Any(c => c.CategoriaId == id);
             }
             catch (Exception)
             {
@@ -44,13 +42,13 @@ namespace Purchase_Sale_Project.Blazor.BLL
             return existe;
         }
 
-        private async Task<bool> Insertar(Clientes clientes)
+        private async Task<bool> Insertar(Categorias categoria)
         {
             bool Insertado = false;
 
             try
             {
-                context.Clientes.Add(clientes);
+                context.Categorias.Add(categoria);
                 Insertado = await context.SaveChangesAsync() > 0;
             }
             catch (Exception)
@@ -60,36 +58,36 @@ namespace Purchase_Sale_Project.Blazor.BLL
             return Insertado;
         }
 
-        private async Task<bool> Modificar(Clientes clientes)
+        private async Task<bool> Modificar(Categorias categoria)
         {
-            bool Insertado = false;
+            bool Modificado = false;
 
             try
             {
-                context.Entry(clientes).State = EntityState.Modified;
-                Insertado = await context.SaveChangesAsync() > 0;
+                context.Entry(categoria).State = EntityState.Modified;
+                Modificado = await context.SaveChangesAsync() > 0;
             }
             catch (Exception)
             {
                 throw;
             }
-            return Insertado;
+            return Modificado;
         }
 
-        public async Task<Clientes> Buscar(int id)
+        public async Task<Categorias> Buscar(int id)
         {
-            Clientes cliente = new Clientes();
+            Categorias categoria = new Categorias();
             string Id = User.getUserId();
 
             try
             {
-                cliente = await context.Clientes.FindAsync(id);
+                categoria = await context.Categorias.FindAsync(id);
             }
             catch (Exception)
             {
                 throw;
             }
-            return cliente;
+            return categoria;
         }
 
         public async Task<bool> Eliminar(int id)
@@ -98,11 +96,11 @@ namespace Purchase_Sale_Project.Blazor.BLL
 
             try
             {
-                var cliente = await context.Clientes.FindAsync(id);
+                var categoria = await context.Categorias.FindAsync(id);
 
-                if (cliente != null)
+                if (categoria != null)
                 {
-                    context.Clientes.Remove(cliente);
+                    context.Categorias.Remove(categoria);
                     Eliminado = (await context.SaveChangesAsync() > 0);
                 }
             }
@@ -113,12 +111,12 @@ namespace Purchase_Sale_Project.Blazor.BLL
             return Eliminado;
         }
 
-        public async Task<List<Clientes>> GetList(Expression<Func<Clientes, bool>> cliente)
+        public async Task<List<Categorias>> GetList(Expression<Func<Categorias, bool>> categoria)
         {
-            List<Clientes> Lista = new List<Clientes>();
+            List<Categorias> Lista = new List<Categorias>();
             try
             {
-                Lista = await context.Clientes.Where(cliente).ToListAsync();
+                Lista = await context.Categorias.Where(categoria).ToListAsync();
             }
             catch (Exception)
             {

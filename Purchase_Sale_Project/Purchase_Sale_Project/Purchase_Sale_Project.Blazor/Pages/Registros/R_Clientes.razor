@@ -2,7 +2,12 @@
 
 @inject AuthenticationStateProvider Authentication
 
+@inject IToastService Toast
+
+@using BLL
+
 <EditForm Model="cliente" OnValidSubmit="Guardar">
+    <DataAnnotationsValidator/>
 
     <div class="container">
         <div class="card">
@@ -17,61 +22,66 @@
 
             <div class="card-body">
 
-                <div class="form-group">
-                    <label>Cliente ID</label>
-                    <div class="input-group">
-                        <input type="number" @bind="cliente.ClienteId" class="form-control col-2" />
-                        <div class="input-group-append">
-                            <button @onclick="Buscar" class="btn btn-outline-primary input-group-text">
-                                Buscar
-                                <svg width="2em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"></path>
-                                    <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"></path>
-                                </svg>
-                            </button>
+                    <div class="form-group">
+                        <label>Cliente ID</label>
+                        <div class="input-group">
+                            <input type="number" @bind="cliente.ClienteId" class="form-control col-2" />
+                            <div class="input-group-append">
+                                <button type="button" @onclick="Buscar" class="btn btn-outline-primary input-group-text">
+                                    Buscar
+                                    <svg width="2em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"></path>
+                                        <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"></path>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                @*mr para espacio*@
+                    @*mr para espacio*@
 
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label>Nombres</label>
-                        <input type="text" @bind="cliente.Nombres" class="form-control" />
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Nombres</label>
+                            <InputText  @bind-Value="cliente.Nombres" class="form-control"/>
+                             <ValidationMessage For="@(() => cliente.Nombres)" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Apellidos</label>
+                            <InputText @bind-Value="cliente.Apellidos" class="form-control"/>
+                            <ValidationMessage For="@(() => cliente.Apellidos)" />
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label>Apellidos</label>
-                        <input type="text" @bind="cliente.Apellidos" class="form-control" />
-                    </div>
-                </div>
 
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label>Cédula</label>
-                        <input type="text" @bind="cliente.Cedula" class="form-control" />
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Cédula</label>
+                            <InputText @bind-Value="cliente.Cedula" class="form-control" />
+                            <ValidationMessage For="@(() => cliente.Cedula)" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Fecha de Nacimiento</label>
+                            <InputDate @bind-Value="cliente.FechaNacimiento" class="form-control" />
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label>Fecha de Nacimiento</label>
-                        <input type="date" @bind="cliente.FechaNacimiento" class="form-control" />
-                    </div>
-                </div>
 
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label>Teléfono</label>
-                        <input type="text" @bind="cliente.Telefono" class="form-control" />
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Teléfono</label>
+                            <InputText @bind-Value="cliente.Telefono" class="form-control" />
+                            <ValidationMessage For="@(() => cliente.Telefono)" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Celular</label>
+                            <InputText @bind-Value="cliente.Celular" class="form-control" />
+                            <ValidationMessage For="@(() => cliente.Celular)" />
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label>Celular</label>
-                        <input type="text" @bind="cliente.Celular" class="form-control" />
+
+                    <div class="form-group">
+                        <label>Dirección</label>
+                        <InputText @bind-Value="cliente.Direccion" class="form-control" />
+                        <ValidationMessage For="@(() => cliente.Direccion)" />
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Dirección</label>
-                    <input type="text" @bind="cliente.Direccion" class="form-control" />
-                </div>
-
             </div>
             <div class="card-footer">
                 <div class="form-group text-center">
@@ -103,23 +113,66 @@
 
 @code
 {
+    [Inject]
+    public ClientesBLL clienteBLL { get; set; }
+
     Clientes cliente = new Clientes();
     string Id;
 
     protected override void OnInitialized()
     {
-        cliente.FechaNacimiento = DateTime.Now;
+        Nuevo();
         Id = Authentication.GetAuthenticationStateAsync().Result.User.getUserId();
     }
 
     public void Nuevo()
     {
         cliente = new Clientes();
+        cliente.FechaNacimiento = DateTime.Now;
     }
 
-    public async Task Guardar() { }
+    public async Task Guardar()
+    {
+        bool guardado;
 
-    public async Task Buscar() { }
+        cliente.UsuarioId = Convert.ToInt32(Id);
+        guardado = await clienteBLL.Guardar(cliente);
 
-    public async Task Eliminar() { }
+        if (guardado)
+        {
+            Nuevo();
+            Toast.ShowSuccess("Guardado correctamente");
+        }
+        else
+            Toast.ShowError("No fue posible guardar");
+    }
+
+    public async Task Buscar()
+    {
+        var Cliente = await clienteBLL.Buscar(cliente.ClienteId);
+
+        if (Cliente != null)
+            cliente = Cliente;
+        else
+        {
+            Toast.ShowError("El cliente no existe");
+            Nuevo();
+        }
+    }
+
+    public async Task Eliminar()
+    {
+        bool Eliminar;
+
+        Eliminar = await clienteBLL.Eliminar(cliente.ClienteId);
+
+        if (Eliminar)
+        {
+            Nuevo();
+            Toast.ShowSuccess("Eliminado correctamente");
+        }
+        else
+            Toast.ShowError("No fue posible eliminar");
+
+    }
 }

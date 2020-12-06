@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Models;
+using Blazored.Toast;
 using Purchase_Sale_Project.Blazor.Areas.Identity;
 using Purchase_Sale_Project.Blazor.BLL;
 using Purchase_Sale_Project.Blazor.Data;
@@ -48,7 +49,10 @@ namespace Purchase_Sale_Project.Blazor
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddBlazoredToast();
             services.AddTransient<UsuariosBLL>();
+            services.AddTransient<ClientesBLL>();
+            services.AddTransient<CategoriasBLL>();
 
             services.AddRazorPages();
             services.AddServerSideBlazor();

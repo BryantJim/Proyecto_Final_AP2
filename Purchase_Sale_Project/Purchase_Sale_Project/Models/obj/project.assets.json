@@ -930,11 +930,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\AnthonyB\\source\\End_Project\\Purchase_Sale_Project\\Purchase_Sale_Project\\Models\\Models.csproj",
+      "projectUniqueName": "C:\\Users\\AnthonyB\\source\\Project\\Proyecto_Final_AP2\\Purchase_Sale_Project\\Purchase_Sale_Project\\Models\\Models.csproj",
       "projectName": "Models",
-      "projectPath": "C:\\Users\\AnthonyB\\source\\End_Project\\Purchase_Sale_Project\\Purchase_Sale_Project\\Models\\Models.csproj",
+      "projectPath": "C:\\Users\\AnthonyB\\source\\Project\\Proyecto_Final_AP2\\Purchase_Sale_Project\\Purchase_Sale_Project\\Models\\Models.csproj",
       "packagesPath": "C:\\Users\\AnthonyB\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\AnthonyB\\source\\End_Project\\Purchase_Sale_Project\\Purchase_Sale_Project\\Models\\obj\\",
+      "outputPath": "C:\\Users\\AnthonyB\\source\\Project\\Proyecto_Final_AP2\\Purchase_Sale_Project\\Purchase_Sale_Project\\Models\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\AnthonyB\\AppData\\Roaming\\NuGet\\NuGet.Config",

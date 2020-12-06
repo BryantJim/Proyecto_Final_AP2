@@ -10,10 +10,12 @@ namespace Models
     {
         [Key]
         public int CategoriaId { get; set; }
+        [Required(ErrorMessage = "Campo nombre es requerido")]
         public string Nombre { get; set; }
         public int UsuarioId { get; set; }
+
         [ForeignKey("UsuarioId")]
-        public virtual Usuarios usuario { get; set; }
+        public virtual Usuarios usuarios { get; set; }
 
     }
 }
