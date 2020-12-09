@@ -12,12 +12,14 @@ namespace Models
         public int CompraId { get; set; }
         public DateTime Fecha { get; set; }
         public float Total { get; set; }
+        [Required]
         public int SuplidorId { get; set; }
-
-        [ForeignKey("SuplidorId")]
-        public virtual List<Suplidores> Suplidor { get; set; }
-
         public int UsuarioId { get; set; }
-        public virtual Usuarios usuarios { get; set; }
+
+        [ForeignKey("CompraId")]
+        public List<ComprasDetalle> Detalle { get; set; }
+
+        [ForeignKey("UsuarioId")]
+        public Usuarios usuarios { get; set; }
     }
 }

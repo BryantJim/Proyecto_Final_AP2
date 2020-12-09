@@ -26,5 +26,11 @@ namespace Models
 
         [ForeignKey("UsuarioId")]
         public virtual Usuarios usuarios { get; set; }
+
+        [ForeignKey("SuplidorId")]
+        public virtual Productos Producto { get; set; }
+
+        [ForeignKey("SuplidorId")]
+        public List<Compras> compra { get; set; }
     }
 }

@@ -9,16 +9,13 @@ namespace Models
         [Key]
         public int Id { get; set; }
         public int CompraId { get; set; }
+        [Required]
         public int ProductoId { get; set; }
+        [Required]
         public float Cantidad { get; set; }
+        [Required]
         public float Costo_Unidad { get; set; }
         public float Monto { get; set; }
         public float ITBIS { get; set; }
-
-        [ForeignKey("CompraId")]
-        public virtual List<Compras> Compra { get; set; }
-
-        [ForeignKey("ProductoId")]
-        public virtual Productos Producto { get; set; }
     }
 }

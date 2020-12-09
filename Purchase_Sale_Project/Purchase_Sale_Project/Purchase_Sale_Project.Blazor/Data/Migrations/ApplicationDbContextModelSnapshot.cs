@@ -149,7 +149,6 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
             modelBuilder.Entity("Models.Categorias", b =>
                 {
                     b.Property<int>("CategoriaId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Nombre")
@@ -209,6 +208,66 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
                     b.ToTable("Clientes");
                 });
 
+            modelBuilder.Entity("Models.Compras", b =>
+                {
+                    b.Property<int>("CompraId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("SuplidorId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<float>("Total")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("CompraId");
+
+                    b.HasIndex("SuplidorId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Compras");
+                });
+
+            modelBuilder.Entity("Models.ComprasDetalle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<float>("Cantidad")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("CompraId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<float>("Costo_Unidad")
+                        .HasColumnType("REAL");
+
+                    b.Property<float>("ITBIS")
+                        .HasColumnType("REAL");
+
+                    b.Property<float>("Monto")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("ProductoId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompraId");
+
+                    b.HasIndex("ProductoId");
+
+                    b.ToTable("ComprasDetalle");
+                });
+
             modelBuilder.Entity("Models.Productos", b =>
                 {
                     b.Property<int>("ProductoId")
@@ -242,10 +301,6 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
 
                     b.HasKey("ProductoId");
 
-                    b.HasIndex("CategoriaId");
-
-                    b.HasIndex("SuplidorId");
-
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("Productos");
@@ -254,7 +309,6 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
             modelBuilder.Entity("Models.Suplidores", b =>
                 {
                     b.Property<int>("SuplidorId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Celular")
@@ -405,11 +459,19 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
 
             modelBuilder.Entity("Models.Categorias", b =>
                 {
+                    b.HasOne("Models.Productos", "Producto")
+                        .WithMany()
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Models.Usuarios", "usuarios")
                         .WithMany()
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Producto");
 
                     b.Navigation("usuarios");
                 });
@@ -425,15 +487,52 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
                     b.Navigation("usuarios");
                 });
 
-            modelBuilder.Entity("Models.Productos", b =>
+            modelBuilder.Entity("Models.Compras", b =>
                 {
-                    b.HasOne("Models.Categorias", "Categoria")
-                        .WithMany()
-                        .HasForeignKey("CategoriaId")
+                    b.HasOne("Models.Suplidores", null)
+                        .WithMany("compra")
+                        .HasForeignKey("SuplidorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.Suplidores", "Suplidor")
+                    b.HasOne("Models.Usuarios", "usuarios")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("usuarios");
+                });
+
+            modelBuilder.Entity("Models.ComprasDetalle", b =>
+                {
+                    b.HasOne("Models.Compras", null)
+                        .WithMany("Detalle")
+                        .HasForeignKey("CompraId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.Productos", null)
+                        .WithMany("Detalle")
+                        .HasForeignKey("ProductoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Models.Productos", b =>
+                {
+                    b.HasOne("Models.Usuarios", "usuarios")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("usuarios");
+                });
+
+            modelBuilder.Entity("Models.Suplidores", b =>
+                {
+                    b.HasOne("Models.Productos", "Producto")
                         .WithMany()
                         .HasForeignKey("SuplidorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -445,22 +544,24 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Categoria");
-
-                    b.Navigation("Suplidor");
+                    b.Navigation("Producto");
 
                     b.Navigation("usuarios");
                 });
 
+            modelBuilder.Entity("Models.Compras", b =>
+                {
+                    b.Navigation("Detalle");
+                });
+
+            modelBuilder.Entity("Models.Productos", b =>
+                {
+                    b.Navigation("Detalle");
+                });
+
             modelBuilder.Entity("Models.Suplidores", b =>
                 {
-                    b.HasOne("Models.Usuarios", "usuarios")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("usuarios");
+                    b.Navigation("compra");
                 });
 #pragma warning restore 612, 618
         }

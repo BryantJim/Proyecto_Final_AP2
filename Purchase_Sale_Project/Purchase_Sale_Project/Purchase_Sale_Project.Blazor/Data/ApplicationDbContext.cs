@@ -15,7 +15,7 @@ namespace Purchase_Sale_Project.Blazor.Data
         public DbSet<Suplidores> Suplidores { get; set; }
         public DbSet<Categorias> Categorias { get; set; }
         //public DbSet<Ventas> Ventas { get; set; }
-        //public DbSet<Compras> Compras { get; set; }
+        public DbSet<Compras> Compras { get; set; }
         //public DbSet<VentasDetalle> VentasDetalle { get; set; }
         //public DbSet<ComprasDetalle> ComprasDetalle { get; set; }
 

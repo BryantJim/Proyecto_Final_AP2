@@ -155,26 +155,6 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Categorias",
-                columns: table => new
-                {
-                    CategoriaId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Nombre = table.Column<string>(type: "TEXT", nullable: false),
-                    UsuarioId = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Categorias", x => x.CategoriaId);
-                    table.ForeignKey(
-                        name: "FK_Categorias_AspNetUsers_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Clientes",
                 columns: table => new
                 {
@@ -194,30 +174,6 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
                     table.PrimaryKey("PK_Clientes", x => x.ClienteId);
                     table.ForeignKey(
                         name: "FK_Clientes_AspNetUsers_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Suplidores",
-                columns: table => new
-                {
-                    SuplidorId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Nombres = table.Column<string>(type: "TEXT", nullable: false),
-                    Direccion = table.Column<string>(type: "TEXT", nullable: false),
-                    Correo = table.Column<string>(type: "TEXT", nullable: false),
-                    Telefono = table.Column<string>(type: "TEXT", nullable: false),
-                    Celular = table.Column<string>(type: "TEXT", nullable: false),
-                    UsuarioId = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Suplidores", x => x.SuplidorId);
-                    table.ForeignKey(
-                        name: "FK_Suplidores_AspNetUsers_UsuarioId",
                         column: x => x.UsuarioId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -248,17 +204,117 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Categorias",
+                columns: table => new
+                {
+                    CategoriaId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Nombre = table.Column<string>(type: "TEXT", nullable: false),
+                    UsuarioId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categorias", x => x.CategoriaId);
                     table.ForeignKey(
-                        name: "FK_Productos_Categorias_CategoriaId",
-                        column: x => x.CategoriaId,
-                        principalTable: "Categorias",
-                        principalColumn: "CategoriaId",
+                        name: "FK_Categorias_AspNetUsers_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Productos_Suplidores_SuplidorId",
+                        name: "FK_Categorias_Productos_CategoriaId",
+                        column: x => x.CategoriaId,
+                        principalTable: "Productos",
+                        principalColumn: "ProductoId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Suplidores",
+                columns: table => new
+                {
+                    SuplidorId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Nombres = table.Column<string>(type: "TEXT", nullable: false),
+                    Direccion = table.Column<string>(type: "TEXT", nullable: false),
+                    Correo = table.Column<string>(type: "TEXT", nullable: false),
+                    Telefono = table.Column<string>(type: "TEXT", nullable: false),
+                    Celular = table.Column<string>(type: "TEXT", nullable: false),
+                    UsuarioId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Suplidores", x => x.SuplidorId);
+                    table.ForeignKey(
+                        name: "FK_Suplidores_AspNetUsers_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Suplidores_Productos_SuplidorId",
+                        column: x => x.SuplidorId,
+                        principalTable: "Productos",
+                        principalColumn: "ProductoId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Compras",
+                columns: table => new
+                {
+                    CompraId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Fecha = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Total = table.Column<float>(type: "REAL", nullable: false),
+                    SuplidorId = table.Column<int>(type: "INTEGER", nullable: false),
+                    UsuarioId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Compras", x => x.CompraId);
+                    table.ForeignKey(
+                        name: "FK_Compras_AspNetUsers_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Compras_Suplidores_SuplidorId",
                         column: x => x.SuplidorId,
                         principalTable: "Suplidores",
                         principalColumn: "SuplidorId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ComprasDetalle",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CompraId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ProductoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Cantidad = table.Column<float>(type: "REAL", nullable: false),
+                    Costo_Unidad = table.Column<float>(type: "REAL", nullable: false),
+                    Monto = table.Column<float>(type: "REAL", nullable: false),
+                    ITBIS = table.Column<float>(type: "REAL", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ComprasDetalle", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ComprasDetalle_Compras_CompraId",
+                        column: x => x.CompraId,
+                        principalTable: "Compras",
+                        principalColumn: "CompraId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ComprasDetalle_Productos_ProductoId",
+                        column: x => x.ProductoId,
+                        principalTable: "Productos",
+                        principalColumn: "ProductoId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -310,14 +366,24 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
                 column: "UsuarioId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Productos_CategoriaId",
-                table: "Productos",
-                column: "CategoriaId");
+                name: "IX_Compras_SuplidorId",
+                table: "Compras",
+                column: "SuplidorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Productos_SuplidorId",
-                table: "Productos",
-                column: "SuplidorId");
+                name: "IX_Compras_UsuarioId",
+                table: "Compras",
+                column: "UsuarioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ComprasDetalle_CompraId",
+                table: "ComprasDetalle",
+                column: "CompraId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ComprasDetalle_ProductoId",
+                table: "ComprasDetalle",
+                column: "ProductoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Productos_UsuarioId",
@@ -348,19 +414,25 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Categorias");
+
+            migrationBuilder.DropTable(
                 name: "Clientes");
 
             migrationBuilder.DropTable(
-                name: "Productos");
+                name: "ComprasDetalle");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Categorias");
+                name: "Compras");
 
             migrationBuilder.DropTable(
                 name: "Suplidores");
+
+            migrationBuilder.DropTable(
+                name: "Productos");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
