@@ -18,8 +18,10 @@ namespace Models
         public string Cedula { get; set; }
         public DateTime FechaNacimiento { get; set; }
         [Required(ErrorMessage = "Campo teléfono es requerido")]
+        [RegularExpression(@"^[01]?[- .]?(\([2-9]\d{2}\)|[2-9]\d{2})[- .]?\d{3}[- .]?\d{4}$", ErrorMessage = "Teléfono no valido.")]
         public string Telefono { get; set; }
         [Required(ErrorMessage = "Campo celular es requerido")]
+        [RegularExpression(@"^[01]?[- .]?(\([2-9]\d{2}\)|[2-9]\d{2})[- .]?\d{3}[- .]?\d{4}$", ErrorMessage = "Celular no valido.")]
         public string Celular { get; set; }
         [Required(ErrorMessage = "Campo dirección es requerido")]
         public string Direccion { get; set; }
