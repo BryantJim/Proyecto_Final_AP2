@@ -25,7 +25,7 @@
                     <div class="form-group">
                         <label>Cliente ID</label>
                         <div class="input-group">
-                            <input type="number" @bind="cliente.ClienteId" class="form-control col-2" />
+                            <InputNumber @bind-Value="cliente.ClienteId" class="form-control col-2" />
                             <div class="input-group-append">
                                 <button type="button" @onclick="Buscar" class="btn btn-outline-primary input-group-text">
                                     Buscar

@@ -7,12 +7,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Purchase_Sale_Project.Blazor.BLL
 {
     
-    public class ClientesBLL : ControllerBase
+    public class ClientesBLL
     {
         private ApplicationDbContext context;
 
@@ -79,7 +80,6 @@ namespace Purchase_Sale_Project.Blazor.BLL
         public async Task<Clientes> Buscar(int id)
         {
             Clientes cliente = new Clientes();
-            string Id = User.getUserId();
 
             try
             {

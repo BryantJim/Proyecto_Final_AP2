@@ -35,7 +35,7 @@ namespace Purchase_Sale_Project.Blazor
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
+                options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")),ServiceLifetime.Transient);
 
             services.AddDefaultIdentity<Usuarios>(options => 

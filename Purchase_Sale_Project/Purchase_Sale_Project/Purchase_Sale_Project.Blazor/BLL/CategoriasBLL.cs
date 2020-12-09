@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Purchase_Sale_Project.Blazor.BLL
 {
-    public class CategoriasBLL : ControllerBase
+    public class CategoriasBLL
     {
         private ApplicationDbContext context;
 
@@ -77,7 +77,6 @@ namespace Purchase_Sale_Project.Blazor.BLL
         public async Task<Categorias> Buscar(int id)
         {
             Categorias categoria = new Categorias();
-            string Id = User.getUserId();
 
             try
             {
