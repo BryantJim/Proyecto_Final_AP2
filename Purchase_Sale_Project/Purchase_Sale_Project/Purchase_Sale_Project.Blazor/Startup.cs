@@ -53,6 +53,7 @@ namespace Purchase_Sale_Project.Blazor
             services.AddTransient<UsuariosBLL>();
             services.AddTransient<ClientesBLL>();
             services.AddTransient<CategoriasBLL>();
+            services.AddTransient<SuplidoresBLL>();
 
             services.AddRazorPages();
             services.AddServerSideBlazor();

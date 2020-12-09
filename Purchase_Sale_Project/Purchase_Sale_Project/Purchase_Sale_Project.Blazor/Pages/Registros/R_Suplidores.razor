@@ -2,6 +2,10 @@
 
 @inject AuthenticationStateProvider Authentication
 
+@inject IToastService Toast
+
+@using BLL
+
 <EditForm Model="suplidor" OnValidSubmit="Guardar">
     <div class="container">
         <div class="card">
@@ -21,9 +25,9 @@
                 <div class="form-group">
                     <label>Suplidor ID</label>
                     <div class="input-group">
-                        <input type="number" @bind="suplidor.SuplidorId" class="form-control col-2" />
+                        <InputNumber @bind-Value="suplidor.SuplidorId" class="form-control col-2" />
                         <div class="input-group-append">
-                            <button @onclick="Buscar" class="btn btn-outline-primary input-group-text">
+                            <button type="button" @onclick="Buscar" class="btn btn-outline-primary input-group-text">
                                 Buscar
                                 <svg width="2em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"></path>
@@ -36,28 +40,33 @@
 
                 <div class="form-group">
                     <label>Nombre</label>
-                    <input type="text" @bind="suplidor.Nombres" class="form-control" />
+                    <InputText @bind-Value="suplidor.Nombres" class="form-control" />
+                    <ValidationMessage For="@(() => suplidor.Nombres)" />
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Correo electronico</label>
-                        <input type="email" @bind="suplidor.Correo" class="form-control" />
+                        <InputText @bind-Value="suplidor.Correo" class="form-control" />
+                        <ValidationMessage For="@(() => suplidor.Nombres)" />
                     </div>
                     <div class="form-group col-md-6">
                         <label>Dirección</label>
-                        <input type="number" @bind="suplidor.Direccion" class="form-control" />
+                        <InputText @bind-Value="suplidor.Direccion" class="form-control" />
+                        <ValidationMessage For="@(() => suplidor.Direccion)" />
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Teléfono</label>
-                        <input type="text" @bind="suplidor.Telefono" class="form-control" />
+                        <InputText @bind-Value="suplidor.Telefono" class="form-control" />
+                        <ValidationMessage For="@(() => suplidor.Telefono)" />
                     </div>
                     <div class="form-group col-md-6">
                         <label>Celular</label>
-                        <input type="text" @bind="suplidor.Celular" class="form-control" />
+                        <InputText @bind-Value="suplidor.Celular" class="form-control" />
+                        <ValidationMessage For="@(() => suplidor.Celular)" />
                     </div>
                 </div>
 
@@ -95,8 +104,12 @@
 </EditForm>
 
 @code {
-    Categorias categoria = new Categorias();
     Suplidores suplidor = new Suplidores();
+
+    [Inject]
+    public SuplidoresBLL suplidoresBLL { get; set; }
+
+    string Id;
 
     protected override void OnInitialized()
     {
@@ -105,13 +118,52 @@
 
     public void Nuevo()
     {
-        categoria = new Categorias();
         suplidor = new Suplidores();
+        Id = Authentication.GetAuthenticationStateAsync().Result.User.getUserId();
     }
 
-    public async Task Guardar() { }
+    public async Task Guardar()
+    {
+        bool guardado;
 
-    public async Task Buscar() { }
+        suplidor.UsuarioId = Convert.ToInt32(Id);
+        guardado = await suplidoresBLL.Guardar(suplidor);
 
-    public async Task Eliminar() { }
+        if (guardado)
+        {
+            Nuevo();
+            Toast.ShowSuccess("Guardado correctamente");
+        }
+        else
+            Toast.ShowError("No fue posible guardar");
+    }
+
+    public async Task Buscar()
+    {
+        var Suplidor = await suplidoresBLL.Buscar(suplidor.SuplidorId);
+
+        if (Suplidor != null)
+            suplidor = Suplidor;
+        else
+        {
+            Toast.ShowError("El suplidor no existe");
+            Nuevo();
+        }
+    }
+
+    public async Task Eliminar()
+    {
+        bool Eliminar;
+
+        Eliminar = await suplidoresBLL.Eliminar(suplidor.SuplidorId);
+
+        if (Eliminar)
+        {
+            Nuevo();
+            Toast.ShowSuccess("Eliminado correctamente");
+        }
+        else
+            Toast.ShowError("No fue posible eliminar");
+
+    }
 }
