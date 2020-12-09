@@ -149,6 +149,7 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
             modelBuilder.Entity("Models.Categorias", b =>
                 {
                     b.Property<int>("CategoriaId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Nombre")
@@ -301,6 +302,10 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
 
                     b.HasKey("ProductoId");
 
+                    b.HasIndex("CategoriaId");
+
+                    b.HasIndex("SuplidorId");
+
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("Productos");
@@ -309,6 +314,7 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
             modelBuilder.Entity("Models.Suplidores", b =>
                 {
                     b.Property<int>("SuplidorId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Celular")
@@ -459,19 +465,11 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
 
             modelBuilder.Entity("Models.Categorias", b =>
                 {
-                    b.HasOne("Models.Productos", "Producto")
-                        .WithMany()
-                        .HasForeignKey("CategoriaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Models.Usuarios", "usuarios")
                         .WithMany()
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Producto");
 
                     b.Navigation("usuarios");
                 });
@@ -489,8 +487,8 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
 
             modelBuilder.Entity("Models.Compras", b =>
                 {
-                    b.HasOne("Models.Suplidores", null)
-                        .WithMany("compra")
+                    b.HasOne("Models.Suplidores", "suplidor")
+                        .WithMany()
                         .HasForeignKey("SuplidorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -500,6 +498,8 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("suplidor");
 
                     b.Navigation("usuarios");
                 });
@@ -513,7 +513,7 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("Models.Productos", null)
-                        .WithMany("Detalle")
+                        .WithMany("detalles")
                         .HasForeignKey("ProductoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -521,18 +521,13 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
 
             modelBuilder.Entity("Models.Productos", b =>
                 {
-                    b.HasOne("Models.Usuarios", "usuarios")
+                    b.HasOne("Models.Categorias", "Categoria")
                         .WithMany()
-                        .HasForeignKey("UsuarioId")
+                        .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("usuarios");
-                });
-
-            modelBuilder.Entity("Models.Suplidores", b =>
-                {
-                    b.HasOne("Models.Productos", "Producto")
+                    b.HasOne("Models.Suplidores", "Suplidor")
                         .WithMany()
                         .HasForeignKey("SuplidorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -544,7 +539,20 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Producto");
+                    b.Navigation("Categoria");
+
+                    b.Navigation("Suplidor");
+
+                    b.Navigation("usuarios");
+                });
+
+            modelBuilder.Entity("Models.Suplidores", b =>
+                {
+                    b.HasOne("Models.Usuarios", "usuarios")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("usuarios");
                 });
@@ -556,12 +564,7 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
 
             modelBuilder.Entity("Models.Productos", b =>
                 {
-                    b.Navigation("Detalle");
-                });
-
-            modelBuilder.Entity("Models.Suplidores", b =>
-                {
-                    b.Navigation("compra");
+                    b.Navigation("detalles");
                 });
 #pragma warning restore 612, 618
         }

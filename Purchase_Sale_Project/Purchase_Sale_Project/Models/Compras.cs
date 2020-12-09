@@ -21,5 +21,8 @@ namespace Models
 
         [ForeignKey("UsuarioId")]
         public Usuarios usuarios { get; set; }
+
+        [ForeignKey("SuplidorId")]
+        public Suplidores suplidor { get; set; }
     }
 }

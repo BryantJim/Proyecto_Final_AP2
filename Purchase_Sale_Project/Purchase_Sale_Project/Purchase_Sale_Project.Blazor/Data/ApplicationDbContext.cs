@@ -17,20 +17,5 @@ namespace Purchase_Sale_Project.Blazor.Data
         //public DbSet<Ventas> Ventas { get; set; }
         public DbSet<Compras> Compras { get; set; }
         //public DbSet<VentasDetalle> VentasDetalle { get; set; }
-        //public DbSet<ComprasDetalle> ComprasDetalle { get; set; }
-
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Usuarios>().HasKey(u => u.Id);
-
-        //    modelBuilder.Entity<Clientes>()
-        //        .HasOne<Usuarios>(s => s.usuarios)
-        //        .WithMany(s => s.Clientes)
-        //        .HasForeignKey(s => s.UsuarioId)
-        //        .OnDelete(DeleteBehavior.Restrict);
-
-        //    //modelBuilder.Entity<Categorias>()
-        //    //    .HasOne<Usuarios>(s => s.usuario)
-        //}
     }
 }

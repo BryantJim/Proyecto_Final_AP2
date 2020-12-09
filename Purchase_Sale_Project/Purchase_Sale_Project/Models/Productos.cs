@@ -28,10 +28,16 @@ namespace Models
         public int SuplidorId { get; set; }
         public int UsuarioId { get; set; }
 
-        [ForeignKey("ProductoId")]
-        public List<ComprasDetalle> Detalle { get; set; }
+        [ForeignKey("CategoriaId")]
+        public virtual Categorias Categoria { get; set; }
 
         [ForeignKey("UsuarioId")]
         public virtual Usuarios usuarios { get; set; }
+
+        [ForeignKey("SuplidorId")]
+        public virtual Suplidores Suplidor { get; set; }
+
+        [ForeignKey("ProductoId")]
+        public List<ComprasDetalle> detalles { get; set; }
     }
 }
