@@ -10,21 +10,31 @@ namespace Models
     {
         [Key]
         public int ProductoId { get; set; }
+        [Required(ErrorMessage = "Campo nombre es requerido")]
         public string Nombre { get; set; }
+        [Required(ErrorMessage = "Campo categoria es requerido")]
+        [Range(minimum: 1, maximum: int.MaxValue, ErrorMessage = "Debe seleccionar una categoria")]
         public int CategoriaId { get; set; }
         public float Cantidad { get; set; }
         public float Costo_Unidad { get; set; }
+        [Required(ErrorMessage = "Campo precio es requerido")]
+        [Range(minimum: 1, maximum: int.MaxValue, ErrorMessage = "Debe seleccionar un precio mayor a 0")]
         public float Precio { get; set; }
+        [Required(ErrorMessage = "Campo ITBIS es requerido")]
+        [Range(minimum: 1, maximum: int.MaxValue, ErrorMessage = "Debe seleccionar un ITBIS")]
         public float ITBIS { get; set; }
+        [Required(ErrorMessage = "Campo suplidor es requerido")]
+        [Range(minimum: 1, maximum: int.MaxValue, ErrorMessage = "Debe seleccionar una suplidor")]
         public int SuplidorId { get; set; }
+        public int UsuarioId { get; set; }
 
         [ForeignKey("SuplidorId")]
-        public virtual List<Suplidores> Suplidor { get; set; }
+        public virtual Suplidores Suplidor { get; set; }
 
         [ForeignKey("CategoriaId")]
-        public virtual List<Categorias> Categoria { get; set; }
+        public virtual Categorias Categoria { get; set; }
 
-        public int UsuarioId { get; set; }
+        [ForeignKey("UsuarioId")]
         public virtual Usuarios usuarios { get; set; }
     }
 }

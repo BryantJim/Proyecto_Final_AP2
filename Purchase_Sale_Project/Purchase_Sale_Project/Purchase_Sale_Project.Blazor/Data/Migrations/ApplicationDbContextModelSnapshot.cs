@@ -209,6 +209,48 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
                     b.ToTable("Clientes");
                 });
 
+            modelBuilder.Entity("Models.Productos", b =>
+                {
+                    b.Property<int>("ProductoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<float>("Cantidad")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<float>("Costo_Unidad")
+                        .HasColumnType("REAL");
+
+                    b.Property<float>("ITBIS")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<float>("Precio")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("SuplidorId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ProductoId");
+
+                    b.HasIndex("CategoriaId");
+
+                    b.HasIndex("SuplidorId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Productos");
+                });
+
             modelBuilder.Entity("Models.Suplidores", b =>
                 {
                     b.Property<int>("SuplidorId")
@@ -379,6 +421,33 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("usuarios");
+                });
+
+            modelBuilder.Entity("Models.Productos", b =>
+                {
+                    b.HasOne("Models.Categorias", "Categoria")
+                        .WithMany()
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.Suplidores", "Suplidor")
+                        .WithMany()
+                        .HasForeignKey("SuplidorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.Usuarios", "usuarios")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categoria");
+
+                    b.Navigation("Suplidor");
 
                     b.Navigation("usuarios");
                 });

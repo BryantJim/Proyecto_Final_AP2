@@ -2,7 +2,12 @@
 
 @inject AuthenticationStateProvider Authentication
 
+@inject IToastService Toast
+
+@using BLL
+
 <EditForm Model="producto" OnValidSubmit="Guardar">
+    <DataAnnotationsValidator />
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -17,11 +22,11 @@
 
             <div class="card-body">
                 <div class="form-group">
-                    <label>Categoria ID</label>
+                    <label>Producto ID</label>
                     <div class="input-group">
-                        <input type="number" @bind="producto.ProductoId" class="form-control col-2" />
+                        <InputNumber @bind-Value="producto.ProductoId" class="form-control col-2" />
                         <div class="input-group-append">
-                            <button @onclick="Buscar" class="btn btn-outline-primary input-group-text">
+                            <button type="button" @onclick="Buscar" class="btn btn-outline-primary input-group-text">
                                 Buscar
                                 <svg width="2em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"></path>
@@ -34,52 +39,57 @@
 
                 <div class="form-group">
                     <label>Nombre</label>
-                    <input type="text" @bind="producto.Nombre" class="form-control" />
+                    <InputText @bind-Value="producto.Nombre" class="form-control" />
+                    <ValidationMessage For="@(() => producto.Nombre)" />
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Suplidor</label>
-                        <select @bind="producto.SuplidorId" class="form-control">
+                        <InputSelect @bind-Value="producto.SuplidorId" class="form-control">
                             <option value="0" disabled selected>Seleccione un suplidor</option>
                             @foreach (var item in SuplidorList)
                             {
                                 <option value="@item.SuplidorId">@item.Nombres</option>
                             }
-                        </select>
+                        </InputSelect>
+                        <ValidationMessage For="@(() => producto.SuplidorId)" />
                     </div>
                     <div class="form-group col-md-6">
                         <label>Categoria</label>
-                        <select @bind="producto.CategoriaId" class="form-control">
+                        <InputSelect @bind-Value="producto.CategoriaId" class="form-control">
                             <option value="0" disabled selected>Seleccione una categoria</option>
                             @foreach (var item in CategoriaList)
                             {
                                 <option value="@item.CategoriaId">@item.Nombre</option>
                             }
-                        </select>
+                        </InputSelect>
+                        <ValidationMessage For="@(() => producto.CategoriaId)" />
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <label>Cantidad</label>
-                        <input type="number" @bind="producto.Cantidad" class="form-control" />
+                        <input type="number" @bind="producto.Cantidad" readonly class="form-control" />
                     </div>
                     <div class="form-group col-md-3">
                         <label>Costo por unidad</label>
-                        <input type="number" @bind="producto.Costo_Unidad" class="form-control" />
+                        <input type="number" @bind="producto.Costo_Unidad" readonly class="form-control" />
                     </div>
                     <div class="form-group col-md-3">
                         <label>Precio</label>
-                        <input type="number" @bind="producto.Precio" class="form-control" />
+                        <InputNumber @bind-Value="producto.Precio" class="form-control" />
+                        <ValidationMessage For="@(() => producto.Precio)" />
                     </div>
                     <div class="form-group col-md-3">
                         <label>ITBIS</label>
-                        <select @bind="producto.ITBIS" class="form-control">
+                        <InputSelect @bind-Value="producto.ITBIS" class="form-control">
                             <option value="0">0%</option>
                             <option value="16">16%</option>
                             <option value="18">18%</option>
-                        </select>
+                        </InputSelect>
+                        <ValidationMessage For="@(() => producto.ITBIS)" />
                     </div>
                 </div>
 
@@ -120,22 +130,75 @@
 @code {
     Productos producto = new Productos();
 
+    [Inject]
+    public CategoriasBLL categoriasBLL { get; set; }
+
+    [Inject]
+    public SuplidoresBLL suplidoresBLL { get; set; }
+
+    [Inject]
+    public ProductosBLL productosBLL { get; set; }
+
     List<Categorias> CategoriaList = new List<Categorias>();
     List<Suplidores> SuplidorList = new List<Suplidores>();
 
-    protected override void OnInitialized()
+    string Id;
+
+    protected override async Task OnInitializedAsync()
     {
-        Nuevo();
+        await Nuevo();
     }
 
-    public void Nuevo()
+    public async Task Nuevo()
     {
         producto = new Productos();
+        CategoriaList = await categoriasBLL.GetList(c => true);
+        SuplidorList = await suplidoresBLL.GetList(c => true);
+        Id = Authentication.GetAuthenticationStateAsync().Result.User.getUserId();
     }
 
-    public async Task Guardar() { }
+    public async Task Guardar()
+    {
+        bool guardado;
 
-    public async Task Buscar() { }
+        producto.UsuarioId = Convert.ToInt32(Id);
+        guardado = await productosBLL.Guardar(producto);
 
-    public async Task Eliminar() { }
+        if (guardado)
+        {
+            Nuevo();
+            Toast.ShowSuccess("Guardado correctamente");
+        }
+        else
+            Toast.ShowError("No fue posible guardar");
+    }
+
+    public async Task Buscar()
+    {
+        var Producto = await productosBLL.Buscar(producto.ProductoId);
+
+        if (Producto != null)
+            producto = Producto;
+        else
+        {
+            Toast.ShowError("El producto no existe");
+            Nuevo();
+        }
+    }
+
+    public async Task Eliminar()
+    {
+        bool Eliminar;
+
+        Eliminar = await productosBLL.Eliminar(producto.ProductoId);
+
+        if (Eliminar)
+        {
+            Nuevo();
+            Toast.ShowSuccess("Eliminado correctamente");
+        }
+        else
+            Toast.ShowError("No fue posible eliminar");
+
+    }
 }
