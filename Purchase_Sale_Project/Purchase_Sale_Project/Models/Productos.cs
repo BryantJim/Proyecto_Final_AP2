@@ -36,8 +36,5 @@ namespace Models
 
         [ForeignKey("SuplidorId")]
         public virtual Suplidores Suplidor { get; set; }
-
-        [ForeignKey("ProductoId")]
-        public List<ComprasDetalle> detalles { get; set; }
     }
 }

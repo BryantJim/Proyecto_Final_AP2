@@ -17,5 +17,8 @@ namespace Models
         public float Costo_Unidad { get; set; }
         public float Monto { get; set; }
         public float ITBIS { get; set; }
+
+        [ForeignKey("ProductoId")]
+        public Productos producto { get; set; }
     }
 }

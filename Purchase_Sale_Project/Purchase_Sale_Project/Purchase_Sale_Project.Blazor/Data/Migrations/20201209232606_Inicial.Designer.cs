@@ -9,7 +9,7 @@ using Purchase_Sale_Project.Blazor.Data;
 namespace Purchase_Sale_Project.Blazor.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201209223244_Inicial")]
+    [Migration("20201209232606_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -514,11 +514,13 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.Productos", null)
-                        .WithMany("detalles")
+                    b.HasOne("Models.Productos", "producto")
+                        .WithMany()
                         .HasForeignKey("ProductoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("producto");
                 });
 
             modelBuilder.Entity("Models.Productos", b =>
@@ -562,11 +564,6 @@ namespace Purchase_Sale_Project.Blazor.Data.Migrations
             modelBuilder.Entity("Models.Compras", b =>
                 {
                     b.Navigation("Detalle");
-                });
-
-            modelBuilder.Entity("Models.Productos", b =>
-                {
-                    b.Navigation("detalles");
                 });
 #pragma warning restore 612, 618
         }

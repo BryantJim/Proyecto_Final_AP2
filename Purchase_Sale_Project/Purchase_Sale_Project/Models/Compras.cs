@@ -17,7 +17,7 @@ namespace Models
         public int UsuarioId { get; set; }
 
         [ForeignKey("CompraId")]
-        public List<ComprasDetalle> Detalle { get; set; }
+        public List<ComprasDetalle> Detalle { get; set; } = new List<ComprasDetalle>();
 
         [ForeignKey("UsuarioId")]
         public Usuarios usuarios { get; set; }
