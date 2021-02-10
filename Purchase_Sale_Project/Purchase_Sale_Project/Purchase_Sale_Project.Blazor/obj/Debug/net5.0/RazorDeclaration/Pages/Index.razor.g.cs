@@ -119,7 +119,7 @@ using BLL;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 43 "C:\Users\Brian\source\repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\Pages\Index.razor"
+#line 26 "C:\Users\Brian\source\repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\Pages\Index.razor"
  
     [Inject]
     public UsuariosBLL usuarios { get; set; }

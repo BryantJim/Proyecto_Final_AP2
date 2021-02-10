@@ -521,7 +521,6 @@ C:\Users\Brian\Source\Repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sa
 C:\Users\Brian\Source\Repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\Purchase_Sale_Project.Blazor.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Brian\Source\Repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\Purchase_Sale_Project.Blazor.RazorComponent.input.cache
 C:\Users\Brian\Source\Repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\RazorDeclaration\App.razor.g.cs
-C:\Users\Brian\Source\Repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\RazorDeclaration\Pages\Counter.razor.g.cs
 C:\Users\Brian\Source\Repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
 C:\Users\Brian\Source\Repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\RazorDeclaration\Pages\Registros\R_Categorias.razor.g.cs
 C:\Users\Brian\Source\Repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\RazorDeclaration\Pages\Registros\R_Clientes.razor.g.cs
@@ -540,7 +539,6 @@ C:\Users\Brian\Source\Repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sa
 C:\Users\Brian\Source\Repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\Purchase_Sale_Project.Blazor.TagHelpers.output.cache
 C:\Users\Brian\Source\Repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\Purchase_Sale_Project.Blazor.RazorCoreGenerate.cache
 C:\Users\Brian\Source\Repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\Razor\App.razor.g.cs
-C:\Users\Brian\Source\Repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\Razor\Pages\Counter.razor.g.cs
 C:\Users\Brian\Source\Repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
 C:\Users\Brian\Source\Repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\Razor\Pages\Registros\R_Categorias.razor.g.cs
 C:\Users\Brian\Source\Repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\Razor\Pages\Registros\R_Clientes.razor.g.cs
@@ -607,3 +605,11 @@ C:\Users\Brian\source\repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sa
 C:\Users\Brian\source\repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\bin\Debug\net5.0\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\Brian\source\repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\bin\Debug\net5.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\Brian\source\repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\bin\Debug\net5.0\runtimes\win-x86\native\e_sqlite3.dll
+C:\Users\Brian\source\repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\RazorDeclaration\Pages\Consultas\C_Categorias.razor.g.cs
+C:\Users\Brian\source\repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\RazorDeclaration\Pages\Consultas\C_Clientes.razor.g.cs
+C:\Users\Brian\source\repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\RazorDeclaration\Pages\Consultas\C_Productos.razor.g.cs
+C:\Users\Brian\source\repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\RazorDeclaration\Pages\Consultas\C_Suplidores.razor.g.cs
+C:\Users\Brian\source\repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\Razor\Pages\Consultas\C_Categorias.razor.g.cs
+C:\Users\Brian\source\repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\Razor\Pages\Consultas\C_Clientes.razor.g.cs
+C:\Users\Brian\source\repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\Razor\Pages\Consultas\C_Productos.razor.g.cs
+C:\Users\Brian\source\repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\obj\Debug\net5.0\Razor\Pages\Consultas\C_Suplidores.razor.g.cs

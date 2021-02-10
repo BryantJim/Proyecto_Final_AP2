@@ -111,7 +111,7 @@ using Blazored.Toast.Services;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 57 "C:\Users\Brian\source\repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\Shared\NavMenu.razor"
+#line 72 "C:\Users\Brian\source\repos\Proyecto_Final_AP2\Purchase_Sale_Project\Purchase_Sale_Project\Purchase_Sale_Project.Blazor\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

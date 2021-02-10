@@ -5,37 +5,20 @@
 
 <AuthorizeView>
     <Authorized>
-        <h1>Bienvenido!</h1>
-        Hello @(context.User.Identity.Name)!
+        <h1>Bienvenido a compra & ventas de productos!</h1>
+        <div>
+            <p>Hola @(context.User.Identity.Name)!</p>    
+        </div>
+        <div>
+            <p>Puede crear sus registros y consultar estos registros en está versión. Pronto habrá mejoras</p>
+        </div>
 
-    <button @onclick="Consultar">Consultar usuarios</button>
-
-    <div class="table-responsive text-nowrap">
-        <table class="table table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Username</th>
-                </tr>
-            </thead>
-            <tbody class="bg-white">
-                @foreach(var item in Lista)
-                {
-                <tr>
-                    <td>@item.Id</td>
-                    <td>@item.UserName</td>
-                </tr>
-                }
-            </tbody>
-        </table>
-    </div>
     </Authorized>
     <NotAuthorized>
-        <h1>Hello, world!</h1>
+        <h1>Bienvenido a compra & ventas de productos!</h1>
 
-        Welcome to your new app.!
+        Debe <a href="Identity/Account/Register">Registrarse</a>, o puede <a href="Identity/Account/Login">Iniciar sesión</a> para crear registros.
 
-        <SurveyPrompt Title="How is Blazor working for you?" />
     </NotAuthorized>
 </AuthorizeView>
 

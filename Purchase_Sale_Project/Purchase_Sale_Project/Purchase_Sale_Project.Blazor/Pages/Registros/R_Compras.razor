@@ -203,26 +203,26 @@
 
     public async Task Agregar()
     {
-        var producto = await productosBLL.Buscar(productoId);
-        subTotal = cantidad * costo;
-        TITBIS = subTotal * (18 / 100);
-        subTotal.ToString("N2");
-        TITBIS.ToString("N2");
+        //var producto = await productosBLL.Buscar(productoId);
+        //subTotal = cantidad * costo;
+        //TITBIS = subTotal * (18 / 100);
+        //subTotal.ToString("N2");
+        //TITBIS.ToString("N2");
 
-        compra.Detalle.Add(new ComprasDetalle
-        {
-            CompraId = compra.CompraId,
-            ProductoId = productoId,
-            Cantidad = cantidad,
-            Costo_Unidad = costo,
-            Monto = subTotal,
-            ITBIS = TITBIS
-        });
+        //compra.Detalle.Add(new ComprasDetalle
+        //{
+        //    CompraId = compra.CompraId,
+        //    ProductoId = productoId,
+        //    Cantidad = cantidad,
+        //    Costo_Unidad = costo,
+        //    Monto = subTotal,
+        //    ITBIS = TITBIS
+        //});
 
-        compra.Total += (subTotal + TITBIS);
-        producto.Cantidad += cantidad;
-        producto.Costo_Unidad = costo;
-        await productosBLL.Guardar(producto);
+        //compra.Total += (subTotal + TITBIS);
+        //producto.Cantidad += cantidad;
+        //producto.Costo_Unidad = costo;
+        //await productosBLL.Guardar(producto);
         Actualizar();
     }
 
